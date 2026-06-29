@@ -5,12 +5,135 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>skyBook</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./src/output.css">
+    <link rel="shortcut icon" href="./asssets/icons/plane-departure-solid-full.svg" type="image/x-icon">
 </head>
 
 <body>
+    <header
+        class="h-screen relative bg-[url(/asssets/images/h.png)] text-white bg-no-repeat bg-cover  bg-top-right font-bold  ">
+        <div class="container mx-auto p-5">
+            <div class="nav">
+            </div>
+            <section class="hero mt-10 pt-20 ">
+                <div class="text-hero flex flex-col gap-10 w-[40%]">
+                    <h1 class="text-6xl ">Your Journey Starts Here</h1>
+                    <p class="text-xl ">Find the best flights, unforgettable experieces and amazing destination</p>
+                </div>
+                <form class="bg-white/60 rounded-lg text-[#525F75] p-5 absolute bottom-0 container mx-auto  "
+                    role="search">
+                    <nav class=" rounded-lg pb-5">
+                        <ul class="flex gap-10">
+                            <li><button class="round-trip" type="button">
+                                    Round Trip
+                                </button></a></li>
+                            <li><button class="one-way" type="button">
+                                    One Way </button></a></li>
+                        </ul>
+                    </nav>
+                    <div class="input-group flex gap-25 justify-between bg-white p-5 ">
+                        <div class="flex flex-col gap-2 flex-1">
+                            <label for="from">from</label>
+                            <div class="relative">
+                                <i class="fa-solid fa-plane-departure absolute top-3 right-2"
+                                    style="color: #2063A6;"></i>
+                                <input type="text" id="from"
+                                    class="border p-2 focus:outline-2 outline-[#2063A6] rounded-lg border-[#E9E9E9] w-full"
+                                    placeholder="Holland">
+                            </div>
+
+                        </div>
+                        <div class="flex flex-col gap-2 destination flex-1">
+                            <label for="to">to</label>
+
+                            <div class="relative ">
+                                <i class="fa-solid fa-plane-arrival absolute top-3 right-2" style="color:#2063A6;"></i>
+                                <input type="text" id="from"
+                                    class="border p-2 rounded-lg border-[#E9E9E9] w-full focus:outline-2 outline-[#2063A6] "
+                                    placeholder="Barcelona">
+                            </div>
+
+                        </div>
+
+                        <div class=" flex  flex-col gap-2 flex-1">
+                            <label for="departure">departure</label>
+                            <div class="relative">
+                                <input type="date" id="return"
+                                    class="border p-2 rounded-lg border-[#F2F2F2] focus:outline-2 outline-[#2063A6] w-full ">
+                                <i class="fa-solid fa-calendar absolute top-3 right-2 text-[#2063A6]"></i>
+
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2 return flex-1">
+                            <label for="return">return</label>
+                            <div class="relative">
+                                <input type="date" id="return"
+                                    class="border p-2 rounded-lg border-[#F2F2F2] focus:outline-2 outline-[#2063A6] w-full ">
+                                <i class="fa-solid fa-calendar absolute top-3 right-2 text-[#2063A6]"></i>
+
+                            </div>
 
 
-    <script type="module" src="./main.js"></script>
+                        </div>
+                        <div class="flex flex-col gap-2 flex-1">
+                            <label for="passengers">Passengers</label>
+
+                            <select id="passengers"
+                                class="border border-[#E9E9E9] rounded-lg p-2 focus:outline-2 outline-[#2063A6] ">
+                                <option value="1" class="text-red-900">1 Passenger</option>
+                                <option value="2">2 Passengers</option>
+                                <option value="3">3 Passengers</option>
+                                <option value="4">4 Passengers</option>
+                                <option value="5">5 Passengers</option>
+                                <option value="6">6+ Passengers</option>
+                            </select>
+                        </div>
+                        <div class="flex flex-col gap-2 flex-1 ">
+                            <label for="cabin-class">Cabin Class</label>
+
+                            <select id="cabin-class"
+                                class="border border-[#E9E9E9] appearance-none rounded-lg p-2 focus:outline-2 outline-[#2063A6] ">
+                                <option value="economy">Economy</option>
+                                <option value="premium-economy">Premium Economy</option>
+                                <option value="business">Business</option>
+                                <option value="first">First Class</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="search-btn bg-white py-3">
+                        <button aria-label="search" class="w-full bg-[#2063A6] py-3 text-white">Search</button>
+                    </div>
+
+                </form>
+            </section>
+        </div>
+
+
+    </header>
+    <!-- <main>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam excepturi provident totam dolore quisquam iure
+            expedita officia aspernatur rerum a deserunt animi error perspiciatis, non quod distinctio rem! Ducimus
+            cupiditate aliquid dolore deserunt ipsa cumque itaque saepe accusamus officia est libero cum natus
+            asperiores suscipit, tenetur amet dolores quaerat enim? Recusandae a odit, suscipit iste similique sed eius
+            incidunt iure est ab, soluta provident illo? Consequatur, molestiae. Itaque cumque dignissimos soluta
+            dolores recusandae quo temporibus non corporis numquam quam quaerat ullam voluptatum eaque, quasi eius iure
+            natus sunt nostrum eligendi rerum at quos repudiandae hic totam? Modi aliquam magnam ratione tempore
+            voluptate natus, officia ipsum nobis? Doloribus, mollitia vero. Commodi a delectus provident vel
+            voluptatibus aliquid molestias omnis sit magnam eos! Doloribus, doloremque repellat. Tempora, maxime!
+            Suscipit quas id iure explicabo amet officia soluta, voluptate aliquid reprehenderit perferendis quod est
+            numquam praesentium voluptatum quasi esse ad at, nisi sed. Minus porro est laboriosam error vitae id! Rerum,
+            corporis voluptatum eveniet autem maiores maxime sint at error explicabo odit alias, et voluptatem adipisci
+            necessitatibus animi architecto natus quia est aperiam magnam hic? Voluptas consequuntur praesentium,
+            tenetur eligendi dicta veniam? Possimus, dolorem.</p>
+    </main> -->
+
+    <script src="./navbar.js"></script>
+    <script src="./main.js"></script>
 </body>
 
 </html>
