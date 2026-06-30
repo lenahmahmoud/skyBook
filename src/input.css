@@ -1,5 +1,8 @@
 @import "tailwindcss";
-
+:root{
+  --navy-blue:#2063A6;
+  --dusty:#E9E9E9;
+}
 
 input[type="date"]::-webkit-calendar-picker-indicator {
   opacity: 0;

@@ -14,7 +14,7 @@
 
 <body>
     <header
-        class="h-screen relative bg-[url(/asssets/images/h.png)] text-white bg-no-repeat bg-cover  bg-top-right font-bold  ">
+        class="h-screen relative bg-[url(/asssets/images/h.png)] text-white bg-no-repeat bg-cover bg-top-right font-bold  ">
         <div class="container mx-auto p-5">
             <div class="nav">
             </div>
@@ -41,7 +41,7 @@
                                 <i class="fa-solid fa-plane-departure absolute top-3 right-2"
                                     style="color: #2063A6;"></i>
                                 <input type="text" id="from"
-                                    class="border p-2 focus:outline-2 outline-[#2063A6] rounded-lg border-[#E9E9E9] w-full"
+                                    class="border p-2 focus:outline-2 outline-[var(--navy-blue)] rounded-lg border-[var(--dusty)] w-full"
                                     placeholder="Holland">
                             </div>
 
@@ -50,9 +50,10 @@
                             <label for="to">to</label>
 
                             <div class="relative ">
-                                <i class="fa-solid fa-plane-arrival absolute top-3 right-2" style="color:#2063A6;"></i>
+                                <i class="fa-solid fa-plane-arrival absolute top-3 right-2"
+                                    style="color:var(--navy-blue);"></i>
                                 <input type="text" id="from"
-                                    class="border p-2 rounded-lg border-[#E9E9E9] w-full focus:outline-2 outline-[#2063A6] "
+                                    class="border p-2 rounded-lg border-[var(--dusty)] w-full focus:outline-2 outline-[var(--navy-blue)] "
                                     placeholder="Barcelona">
                             </div>
 
@@ -63,7 +64,7 @@
                             <div class="relative">
                                 <input type="date" id="return"
                                     class="border p-2 rounded-lg border-[#F2F2F2] focus:outline-2 outline-[#2063A6] w-full ">
-                                <i class="fa-solid fa-calendar absolute top-3 right-2 text-[#2063A6]"></i>
+                                <i class="fa-solid fa-calendar absolute top-3 right-2 text-[var(--navy-blue)]"></i>
 
                             </div>
                         </div>
@@ -82,7 +83,7 @@
                             <label for="passengers">Passengers</label>
 
                             <select id="passengers"
-                                class="border border-[#E9E9E9] rounded-lg p-2 focus:outline-2 outline-[#2063A6] ">
+                                class="border border-[#E9E9E9] rounded-lg p-2 focus:outline-2 outline-[var(--navy-blue)] ">
                                 <option value="1" class="text-red-900">1 Passenger</option>
                                 <option value="2">2 Passengers</option>
                                 <option value="3">3 Passengers</option>
@@ -95,7 +96,7 @@
                             <label for="cabin-class">Cabin Class</label>
 
                             <select id="cabin-class"
-                                class="border border-[#E9E9E9] appearance-none rounded-lg p-2 focus:outline-2 outline-[#2063A6] ">
+                                class="border border-[#E9E9E9] appearance-none rounded-lg p-2 focus:outline-2 outline-[var(--navy-blue)] ">
                                 <option value="economy">Economy</option>
                                 <option value="premium-economy">Premium Economy</option>
                                 <option value="business">Business</option>
@@ -106,7 +107,7 @@
                     </div>
 
                     <div class="search-btn bg-white py-3">
-                        <button aria-label="search" class="w-full bg-[#2063A6] py-3 text-white">Search</button>
+                        <button aria-label="search" class="w-full bg-[var(--navy-blue)] py-3 text-white">Search</button>
                     </div>
 
                 </form>
@@ -131,8 +132,59 @@
             necessitatibus animi architecto natus quia est aperiam magnam hic? Voluptas consequuntur praesentium,
             tenetur eligendi dicta veniam? Possimus, dolorem.</p>
     </main> -->
+    <section class="why-choose-us bg-[url(/asssets/images/why-choose-us.png)] h-[65vh] bg-no-repeat bg-cover bg-top bg-center p-4">
+        <div class="container mx-auto flex flex-col justify-between">
+            <h2 class="text-center font-bold text-3xl">Why Choose Us ?</h2>
+            <div class="why-us flex justify-between mt-5 gap-5 h-[30vh]">
+                <article class="flex gap-5 items-center flex-1 border p-3 rounded-lg border-[var(--dusty)]">
+                    <div class="icon size-20 rounded-full shadow-xl/20 flex justify-center items-center">
+                        <i class="fa-solid fa-magnifying-glass-dollar text-2xl" style="color: var(--navy-blue);"></i>
+                    </div>
+                    <div class="icon-text">
+                        <h3 class="font-bold text-lg">Best Prices</h3>
+                        <p>We Provide The Best Prices</p>
+                    </div>
 
+                </article>
+                <article class="flex gap-5 items-center flex-1 border p-3 border-[var(--dusty)] rounded-lg">
+                    <div class="icon size-20 rounded-full shadow-xl/20 flex justify-center items-center">
+                        <i class="fa-solid fa-shield text-2xl" style="color: var(--navy-blue)"></i>
+                    </div>
+                    <div class="icon-text">
+                        <h3 class="font-bold text-lg">Safe Flights</h3>
+                        <p>Your Safety Is Our Priority</p>
+                    </div>
+
+                </article>
+                <article class="flex gap-5 items-center flex-1 border p-3 border-[var(--dusty)] rounded-lg">
+                    <div class="icon size-20 rounded-full shadow-xl/20 flex justify-center items-center">
+                        <i class="fa-solid fa-headset text-2xl" style="color: var(--navy-blue)"></i>
+                    </div>
+                    <div class="icon-text">
+                        <h3 class="font-bold text-lg">24/7 Support</h3>
+                        <p>We Are Here To Help You</p>
+                    </div>
+
+                </article>
+                <article class="flex gap-5 items-center flex-1 border p-3 border-[var(--dusty)] rounded-lg">
+                    <div class="icon size-20 rounded-full shadow-xl/20 flex justify-center items-center">
+                        <i class="fa-solid fa-plane-circle-check text-2xl" style="color: var(--navy-blue);"></i>
+                    </div>
+                    <div class="icon-text">
+                        <h3 class="font-bold text-lg">Easy Booking</h3>
+                        <p>Book In Miutes With Us</p>
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+    </section>
+
+    <div class="footer"></div>
     <script src="./navbar.js"></script>
+    <script src="./footer.js"></script>
     <script src="./main.js"></script>
 </body>
 
