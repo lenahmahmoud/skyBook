@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>skyBook</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./src/output.css">
+    <link rel="shortcut icon" href="./assets/icons/plane-departure-solid-full.svg" type="image/x-icon">
+</head>
+
+<body>
+    <main
+        class="flex justify-center items-center h-screen bg-[url('../assets/images/background-signup.png')] bg-no-repeat bg-cover bg-center font-bold flex-col">
+
+        <div class="w-[35%] p-5">
+            <a href="./index.html" class="hover:text-gray-500 duration-300 ease-in-out">
+                <i class="fa-solid fa-angles-left text-[var(--navy-blue)]" "></i>
+                Back to home</a></div>
+        <div class=" login-box bg-white rounded-lg w-[35%] p-10 h-[65vh]">
+                    <h2 class="text-center font-bold text-4xl ">Welcome Back</h2>
+                    <p class="text-center text-gray-500 my-2 font-bold">Log in to your account</p>
+
+                    <form class="mt-7 flex flex-col justify-between gap-5">
+                        <input type="email" name="email"
+                            class="p-3 text-[gray-500] rounded-lg w-full bg-gray-100  focus:outline-2 focus:outline-[var(--dusty)]"
+                            placeholder="Email address">
+                        <div class="relative">
+                            <input type="password" name="password"
+                                class="p-3 text-[gray-500] rounded-lg w-full bg-gray-100  focus:outline-2 focus:outline-[var(--dusty)] password"
+                                placeholder="Password">
+                            <button type="button" class="absolute top-3 right-4 eye ">
+                                <i class="fa-solid fa-eye-slash text-[var(--navy-blue)] cursor-pointer"></i>
+                            </button>
+                        </div>
+                        <div class="flex justify-between mt-5">
+                            <div class="flex gap-2"> <input type="checkbox" id="chack">
+                                <label for="chack">Remember Me</label>
+                            </div>
+                            <div>
+                                <a href="#" class="text-gray-500">Forgot Password?</a>
+
+                            </div>
+
+                        </div>
+                        <div class="submit ">
+                            <button class="bg-[var(--navy-blue)] px-4 w-full rounded-lg text-white py-2" type="submit">Log in</button>
+                        </div>
+
+
+                    </form>
+                    <div class="sign-up mt-5 text-center">
+                        <p class="text-gray-500">Don't have an account? <a href="./signup.html"
+                                class="text-blue-700">Sign
+                                Up</a></p>
+                    </div>
+        </div>
+
+
+    </main>
+
+
+
+    <script type="module" src="./js/login.js"></script>
+</body>
+
+</html>
