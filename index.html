@@ -14,16 +14,17 @@
 
 <body>
     <header
-        class="h-screen relative bg-[url(/assets/images/h.png)] text-white bg-no-repeat bg-cover bg-top-right font-bold  ">
-        <div class="container mx-auto p-5">
+        class="h-[100vh]  bg-[url(/assets/images/hi.png)] text-white bg-no-repeat bg-cover  font-bold  ">
+        <div class="container mx-auto p-5 ">
             <div class="nav">
             </div>
-            <section class="hero mt-10 pt-20 ">
+            <section class="hero mt-10 pt-20 flex flex-col gap-10 ">
                 <div class="text-hero flex flex-col gap-10 w-[40%]">
                     <h1 class="text-6xl ">Your Journey Starts Here</h1>
                     <p class="text-xl ">Find the best flights, unforgettable experieces and amazing destination</p>
                 </div>
-                <form class="bg-white/60 rounded-lg text-[#525F75] p-5 absolute bottom-0 container mx-auto  "
+                <form
+                    class="bg-white/60 rounded-lg text-[#525F75] p-5 container mx-auto shadow-lg/20   "
                     role="search">
                     <nav class=" rounded-lg pb-5">
                         <ul class="flex gap-10">
@@ -115,25 +116,24 @@
 
 
     </header>
-    <!-- <main>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam excepturi provident totam dolore quisquam iure
-            expedita officia aspernatur rerum a deserunt animi error perspiciatis, non quod distinctio rem! Ducimus
-            cupiditate aliquid dolore deserunt ipsa cumque itaque saepe accusamus officia est libero cum natus
-            asperiores suscipit, tenetur amet dolores quaerat enim? Recusandae a odit, suscipit iste similique sed eius
-            incidunt iure est ab, soluta provident illo? Consequatur, molestiae. Itaque cumque dignissimos soluta
-            dolores recusandae quo temporibus non corporis numquam quam quaerat ullam voluptatum eaque, quasi eius iure
-            natus sunt nostrum eligendi rerum at quos repudiandae hic totam? Modi aliquam magnam ratione tempore
-            voluptate natus, officia ipsum nobis? Doloribus, mollitia vero. Commodi a delectus provident vel
-            voluptatibus aliquid molestias omnis sit magnam eos! Doloribus, doloremque repellat. Tempora, maxime!
-            Suscipit quas id iure explicabo amet officia soluta, voluptate aliquid reprehenderit perferendis quod est
-            numquam praesentium voluptatum quasi esse ad at, nisi sed. Minus porro est laboriosam error vitae id! Rerum,
-            corporis voluptatum eveniet autem maiores maxime sint at error explicabo odit alias, et voluptatem adipisci
-            necessitatibus animi architecto natus quia est aperiam magnam hic? Voluptas consequuntur praesentium,
-            tenetur eligendi dicta veniam? Possimus, dolorem.</p>
-    </main> -->
-    <section class="why-choose-us bg-[url(/assets/images/why-choose-us.png)] h-[65vh] bg-no-repeat bg-cover bg-top bg-center p-4">
+    <main class="mt-10">
+        <div class="container mx-auto  ">
+            <h3 class="font-bold text-3xl">Popular Destination</h3>
+            <p class="">Explore our most popular destinations</p>
+
+            <section class="destinations flex gap-3 justify-between p-4">
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+    <section
+        class="why-choose-us bg-[url(/assets/images/why-choose-us.png)] h-[65vh] bg-no-repeat bg-cover bg-top bg-center p-4 mt-10">
         <div class="container mx-auto flex flex-col justify-between">
-            <h2 class="text-center font-bold text-3xl">Why Choose Us ?</h2>
+            <h2 class=" font-bold text-3xl">Why Choose Us ?</h2>
             <div class="why-us flex justify-between mt-5 gap-5 h-[30vh]">
                 <article class="flex gap-5 items-center flex-1 border p-3 rounded-lg border-[var(--dusty)]">
                     <div class="icon size-20 rounded-full shadow-xl/20 flex justify-center items-center">
@@ -181,10 +181,11 @@
         </div>
     </section>
 
+
     <div class="footer"></div>
     <script src="../js/navbar.js"></script>
     <script src="../js/footer.js"></script>
-    <script src="../js/main.js"></script>
+    <script type="module" src="../js/main.js"></script>
 </body>
 
 </html>
