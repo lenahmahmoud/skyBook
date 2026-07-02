@@ -47,6 +47,8 @@ async function getPopularDestination() {
 }
 
 async function createDestinationsection() {
+  console.log("called", new Date().toISOString());
+
   const destinations = await getPopularDestination();
   const destinationsSection = document.querySelector(".destinations");
   console.log(Array.from(destinations).map((d) => d));
@@ -56,22 +58,40 @@ async function createDestinationsection() {
     article.classList.add(
       ...[
         "rounded-2xl",
-        "bg-cover",
-        "bg-no-repeat",
         "h-[40vh]",
         "flex-1",
         "text-white",
         "flex",
         "flex-col",
-        "gap-10",
-        "group"
-       
-        ,"overflow-hidden"
+        "group",
+        "gap-20",
+        "overflow-hidden",
+        "relative",
+        "z-40",
       ],
     );
-    article.style.backgroundImage = `url( ./assets/cities/${destination.cityDestinationPhoto})`;
+
+    const overlay = document.createElement("div");
+    overlay.classList.add(
+      ...[
+        "top-0",
+        "absolute",
+        "h-full",
+        "w-full",
+        "bg-cover",
+        "bg-no-repeat",
+        "z-0",
+        "group-hover:scale-[1.1]",
+        "duration-500",
+        "ease-in-out",
+        "pointer-events-none",
+      ],
+    );
+    overlay.style.backgroundImage = `url(${destination.cityDestinationPhoto})`;
+    article.appendChild(overlay);
+
     const div = document.createElement("div");
-    div.classList.add(...["rounded-lg", "w-fit", "p-2"]);
+    div.classList.add(...["rounded-lg", "p-2", "z-30"]);
     const h3 = document.createElement("h3");
     h3.textContent = destination.cityDestination;
     h3.classList.add(...["font-bold", "text-xl"]);
@@ -86,16 +106,17 @@ async function createDestinationsection() {
         "text-center",
         "opacity-0",
         "group-hover:opacity-100",
-        "transition-opacity",
-        "duration-300",
-        "ease-in-out"
-      
+        "transition",
+        "duration-700",
+        "ease-in-out",
+        "font-bold",
+        "pointer-events-none",
       ],
     );
     const linkExplore = document.createElement("a");
     linkExplore.innerText = "explore flights";
     linkExplore.href = "#";
-
+    linkExplore.classList.add("pointer-events-auto");
     divExplore.appendChild(linkExplore);
 
     article.appendChild(div);
@@ -106,7 +127,8 @@ async function createDestinationsection() {
     destinationsSection.appendChild(article);
   });
 }
+createDestinationsection();
+
 window.onload = () => {
   toggleOneWay();
-  createDestinationsection();
 };
