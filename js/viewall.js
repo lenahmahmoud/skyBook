@@ -1,61 +1,34 @@
 import { getFlights } from "./flights.js";
-function toggleOneWay() {
-  const oneWay = document.getElementsByClassName("one-way")[0];
-  const roundTrip = document.getElementsByClassName("round-trip")[0];
-  const returnDate = document.getElementsByClassName("return")[0];
 
-  toggleHelper(roundTrip, oneWay);
+async function getDestinations() {
+  const dest = await getFlights();
 
-  function toggleHelper(active, inactive) {
-    const activeClasses = [
-      "border-b",
-      "border-b-[var(--navy-blue)]",
-      "border-b-[2px]",
-      "rounded-sm",
-    ];
-    active.classList.add(...activeClasses);
-    inactive.classList.remove(...activeClasses);
-  }
-  oneWay.addEventListener("click", () => {
-    toggleHelper(oneWay, roundTrip);
-    returnDate.classList.add("hidden");
-  });
-  roundTrip.addEventListener("click", () => {
-    toggleHelper(roundTrip, oneWay);
-    returnDate.classList.remove("hidden");
-  });
-}
-
-async function getPopularDestination() {
-  const flights = await getFlights();
-  const sortedFlights = [...flights].sort((a, b) => {
-    return b.seatsBooked - a.seatsBooked;
-  });
-  const uniqueFlights = sortedFlights.reduce((acc, current) => {
-    const existed = acc.some(
-      (item) => item.cityDestination == current.cityDestination,
-    );
-
+  const uniqueDEstinations = dest.reduce((acc, current) => {
+    const existed = acc.some((d) => {
+      return d.cityDestination === current.cityDestination;
+    });
     if (!existed) {
       acc.push(current);
     }
+
     return acc;
   }, []);
-  uniqueFlights.length = 7;
-
-  return uniqueFlights;
+  return uniqueDEstinations
+  
 }
 
-async function createDestinationsection() {
-  const destinations = await getPopularDestination();
-  const destinationsSection = document.querySelector(".destinations");
 
-  Array.from(destinations).forEach((destination) => {
+async function createDestinations(){
+
+    const destinations= await getDestinations();
+    console.log(destinations);
+    const destinationsSection= document.getElementsByClassName('dest')[0];
+Array.from(destinations).forEach((destination) => {
     const article = document.createElement("article");
     article.classList.add(
       ...[
         "rounded-2xl",
-        "h-[40vh]",
+        "h-[50vh]",
         "text-white",
         "flex",
         "flex-col",
@@ -63,7 +36,11 @@ async function createDestinationsection() {
         "overflow-hidden",
         "relative",
         "z-40",
-        "flex-1",
+        "w-[300px]",
+       
+        "w-[45%]",
+        "shrink-0"
+                
       ],
     );
 
@@ -132,7 +109,6 @@ async function createDestinationsection() {
       window.location.href="./explore.html"
 
 
-
     });
 
     linkExplore.appendChild(exploreIcon);
@@ -143,9 +119,8 @@ async function createDestinationsection() {
     div.appendChild(p);
     destinationsSection.appendChild(article);
   });
-}
-createDestinationsection();
 
-window.onload = () => {
-  toggleOneWay();
-};
+
+}
+
+createDestinations()

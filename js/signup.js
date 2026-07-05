@@ -61,8 +61,11 @@ async function handleSubmit(e) {
   const password = data.get("password");
   const confirmPassword = data.get("confirmpassword");
   const TheSameEmail = await isTheSameEmail(email);
+
   const regepx = /^\w+\.\w+@\w+\.(com|org|net)$/;
   const isValid = regepx.test(email);
+
+  
   if (
     data === "" ||
     firstName === "" ||

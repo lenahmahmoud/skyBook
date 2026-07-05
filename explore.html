@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>skyBook</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./src/output.css">
+    <link rel="shortcut icon" href="./assets/icons/plane-departure-solid-full.svg" type="image/x-icon">
+</head>
+
+<body>
+    <header class="border-b border-gray-200 ">
+        <div class="container p-4 mx-auto flex items-center gap-5">
+            <h1 class="icons text-2xl flex gap-3">
+                <a class="text-[var(--navy-blue)] " href="./index.html">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </a>
+                <a href="./index.html" class="font-bold text-[var(--navy-blue)]">
+
+                    <i class="fa-solid fa-plane-departure "></i> skyBook
+                </a>
+
+            </h1>
+            <div class="spans flex items-center gap-2">
+                <span class="text-gray-300">|</span>
+                <span class="text-gray-500">Flights to</span>
+                <span class="font-semibold text-[var(--navy-blue)] dest-city">Dubai</span>
+
+            </div>
+
+        </div>
+    </header>
+    <div class="search">
+        <div class="container mx-auto font-bold p-2 ">
+            <h2 class="text-2xl">Search Results</h2>
+            <span class="text-gray-500 search-res"></span>
+
+        </div>
+
+
+    </div>
+
+    <main class="font-bold  ">
+        <div class="container mx-auto flex gap-3 ">
+            <aside class="filter rounded-lg border border-gray-200  flex-1 p-4" aria-label="flights filter">
+                <div class="flex  items-center justify-between">
+                    <h3 class="flex-1">Filters</h3>
+                    <div class="flex-1 flex items-center  justify-end gap-1">
+                        <button class="text-[var(--navy-blue)] cursor-pointer" type="reset">Reset |</button>
+                        <button type="submit" class=" text-[var(--navy-blue)] cursor-pointer">Filter</button>
+
+                    </div>
+
+                </div>
+                <form>
+                    <div class="airlines flex flex-col gap-2 mt-5 border border-gray-200 p-3">
+                        <label for="airline" class="text-gray-500">Airline</label>
+                        <select name="airline" id="airline"
+                            class=" outline outline-gray-200 focus:outline-gray-200 p-1 appearance-none rounded-lg">
+                            <option value="All">All</option>
+                            <option value="Aegean Airlines">Aegean Airlines</option>
+                            <option value="Air China">Air China</option>
+                            <option value="Air France">Air France</option>
+                            <option value="British Airways">British Airways</option>
+                            <option value="Delta Air Lines">Delta Air Lines</option>
+                            <option value="EgyptAir">EgyptAir</option>
+                            <option value="Emirates">Emirates</option>
+                            <option value="Etihad Airways">Etihad Airways</option>
+                            <option value="Iberia">Iberia</option>
+                            <option value="Japan Airlines">Japan Airlines</option>
+                            <option value="KLM">KLM</option>
+                            <option value="Korean Air">Korean Air</option>
+                            <option value="Kuwait Airways">Kuwait Airways</option>
+                            <option value="Lufthansa">Lufthansa</option>
+                            <option value="Qatar Airways">Qatar Airways</option>
+                            <option value="Royal Jordanian">Royal Jordanian</option>
+                            <option value="Saudia">Saudia</option>
+                            <option value="Swiss International">Swiss International</option>
+                            <option value="TAP Portugal">TAP Portugal</option>
+                            <option value="Turkish Airlines">Turkish Airlines</option>
+                        </select>
+                    </div>
+                    <div class="price-range flex flex-col gap-2 mt-5 border border-gray-200 p-3">
+                        <label for="range" class="text-gray-500">Price Range</label>
+                        <span>$200-$300</span>
+                        <input type="range" class="text-blue-700" id="range">
+
+                    </div>
+                    <div class="price-range flex flex-col gap-2 mt-5 border border-gray-200 p-3">
+                        <span for="airline" class="text-gray-500">Stops</span>
+
+                        <div class="flex items-center gap-1">
+                            <input type="checkbox" name="stops" value="zero" id="stop-0">
+                            <label for="stop-0">non-stop</label>
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <input type="checkbox" name="stops" value="one" id="stop-1">
+                            <label for="stop-1">one-stop</label>
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <input type="checkbox" name="stops" value="two" id="stop-2">
+                            <label for="stop-2">2-stop</label>
+                        </div>
+
+
+                    </div>
+                    <div class="dep-time flex flex-col gap-2 mt-5 border border-gray-200 p-3 ">
+                        <span class="text-gray-700">Departure Time</span>
+                        <div class="flex justify-between">
+                            <label>
+                                <input type="radio" name="timedep" class="sr-only peer" value="morning">
+                                <span
+                                    class="p-1 rounded-lg outline outline-gray-200  peer-checked:bg-[var(--navy-blue)] peer-checked:text-white cursor-pointer">
+                                    Morning
+                                </span>
+                            </label>
+                            <label>
+                                <input type="radio" name="timedep" class="sr-only peer" value="morning">
+                                <span
+                                    class="p-1 rounded-lg outline outline-gray-200  peer-checked:bg-[var(--navy-blue)] peer-checked:text-white cursor-pointer">
+                                    Afternoon
+                                </span>
+                            </label>
+                        </div>
+                        <div class="mt-2">
+
+                            <label>
+                                <input type="radio" name="timedep" class="sr-only peer" value="morning">
+                                <span
+                                    class="p-1 rounded-lg outline outline-gray-200 peer-checked:bg-[var(--navy-blue)] peer-checked:text-white cursor-pointer">
+                                    Evenning
+                                </span>
+                            </label>
+
+                        </div>
+
+
+
+
+                    </div>
+
+
+                </form>
+
+            </aside>
+            <div class="content flex-5 flex flex-col gap-3 scroll h-[80vh] overflow-y-auto">
+
+            </div>
+
+
+            <div>
+                <img src="./assets/logos/turkishairlines-com-logo.png" alt="" class="siz-8 rounded-circle">
+            </div>
+        </div>
+
+    </main>
+
+
+    <script type="module" src="./js/explore.js"></script>
+
+
+</body>
+
+</html>
