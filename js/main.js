@@ -1,4 +1,6 @@
 import { getFlights } from "./flights.js";
+import Swal from "https://cdn.jsdelivr.net/npm/sweetalert2@11/+esm";
+
 function toggleOneWay() {
   const oneWay = document.getElementsByClassName("one-way")[0];
   const roundTrip = document.getElementsByClassName("round-trip")[0];
@@ -128,11 +130,8 @@ async function createDestinationsection() {
     );
     linkExplore.type = "button";
     linkExplore.addEventListener("click", () => {
-      localStorage.setItem("destination",destination.cityDestination);
-      window.location.href="./explore.html"
-
-
-
+      localStorage.setItem("destination", destination.cityDestination);
+      window.location.href = "./explore.html";
     });
 
     linkExplore.appendChild(exploreIcon);
@@ -144,8 +143,51 @@ async function createDestinationsection() {
     destinationsSection.appendChild(article);
   });
 }
-createDestinationsection();
 
-window.onload = () => {
-  toggleOneWay();
-};
+function handleSearchedCities(e) {
+  e.preventDefault();
+  const data = new FormData(form);
+
+  const fromCity = data.get("fromCity");
+  const toCity = data.get("toCity");
+  const depDate = data.get("depDate");
+  const returnDate = data.get("returnDate") || " ";
+  const passengers = data.get("passengers");
+  const cabinClass = data.get("cabin");
+  const inputReturn = form.returnDate;
+
+  if (
+    fromCity === "" ||
+    toCity === "" ||
+    depDate === "" ||
+    passengers == "" ||
+    cabinClass === "" ||
+    (!inputReturn.classList.contains("hidden") && returnDate === "")
+  ) {
+    Swal.fire({
+      icon: "warning",
+      title: "Please Fill All The Fields",
+      showConfirmButton: false,
+      timer: 2000,
+    });
+    return;
+  }
+  localStorage.setItem(
+    "fromCity",
+    fromCity.slice(0, 1).toUpperCase() + fromCity.slice(1),
+  );
+  localStorage.setItem(
+    "destination",
+    toCity.slice(0, 1).toUpperCase() + toCity.slice(1),
+  );
+  localStorage.setItem("depDate", depDate);
+  localStorage.setItem("returnDate", returnDate);
+  localStorage.setItem("passengers", passengers);
+  localStorage.setItem("cabinClass", cabinClass);
+  window.location.href = "./explore.html";
+}
+
+createDestinationsection();
+toggleOneWay();
+const form = document.forms[0];
+form.addEventListener("submit", handleSearchedCities);

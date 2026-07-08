@@ -47,63 +47,44 @@
     <main class="font-bold  ">
         <div class="container mx-auto flex gap-3 ">
             <aside class="filter rounded-lg border border-gray-200  flex-1 p-4" aria-label="flights filter">
-                <div class="flex  items-center justify-between">
-                    <h3 class="flex-1">Filters</h3>
-                    <div class="flex-1 flex items-center  justify-end gap-1">
-                        <button class="text-[var(--navy-blue)] cursor-pointer" type="reset">Reset |</button>
-                        <button type="submit" class=" text-[var(--navy-blue)] cursor-pointer">Filter</button>
+                <form>
+                    <div class="flex  items-center justify-between">
+                        <h3 class="flex-1">Filters</h3>
+                        <div class="flex-1 flex items-center  justify-end gap-1">
+                            <button class="text-[var(--navy-blue)] cursor-pointer" type="reset">Reset |</button>
+                            <button type="submit" class=" text-[var(--navy-blue)] cursor-pointer">Filter</button>
+
+                        </div>
 
                     </div>
 
-                </div>
-                <form>
                     <div class="airlines flex flex-col gap-2 mt-5 border border-gray-200 p-3">
                         <label for="airline" class="text-gray-500">Airline</label>
                         <select name="airline" id="airline"
                             class=" outline outline-gray-200 focus:outline-gray-200 p-1 appearance-none rounded-lg">
-                            <option value="All">All</option>
-                            <option value="Aegean Airlines">Aegean Airlines</option>
-                            <option value="Air China">Air China</option>
-                            <option value="Air France">Air France</option>
-                            <option value="British Airways">British Airways</option>
-                            <option value="Delta Air Lines">Delta Air Lines</option>
-                            <option value="EgyptAir">EgyptAir</option>
-                            <option value="Emirates">Emirates</option>
-                            <option value="Etihad Airways">Etihad Airways</option>
-                            <option value="Iberia">Iberia</option>
-                            <option value="Japan Airlines">Japan Airlines</option>
-                            <option value="KLM">KLM</option>
-                            <option value="Korean Air">Korean Air</option>
-                            <option value="Kuwait Airways">Kuwait Airways</option>
-                            <option value="Lufthansa">Lufthansa</option>
-                            <option value="Qatar Airways">Qatar Airways</option>
-                            <option value="Royal Jordanian">Royal Jordanian</option>
-                            <option value="Saudia">Saudia</option>
-                            <option value="Swiss International">Swiss International</option>
-                            <option value="TAP Portugal">TAP Portugal</option>
-                            <option value="Turkish Airlines">Turkish Airlines</option>
+
                         </select>
                     </div>
                     <div class="price-range flex flex-col gap-2 mt-5 border border-gray-200 p-3">
                         <label for="range" class="text-gray-500">Price Range</label>
-                        <span>$200-$300</span>
-                        <input type="range" class="text-blue-700" id="range">
+                        <span>170$- 1000$ </span>
+                        <input type="range" class="text-blue-700 " id="range" name="range" min="172" max="1000">
 
                     </div>
                     <div class="price-range flex flex-col gap-2 mt-5 border border-gray-200 p-3">
                         <span for="airline" class="text-gray-500">Stops</span>
 
                         <div class="flex items-center gap-1">
-                            <input type="checkbox" name="stops" value="zero" id="stop-0">
-                            <label for="stop-0">non-stop</label>
+                            <input type="checkbox" name="stops" value="non-stops" id="stop-0">
+                            <label for="stop-0">non-stops</label>
                         </div>
                         <div class="flex items-center gap-1">
-                            <input type="checkbox" name="stops" value="one" id="stop-1">
-                            <label for="stop-1">one-stop</label>
+                            <input type="checkbox" name="stops" value="one-stops" id="stop-1">
+                            <label for="stop-1">one-stops</label>
                         </div>
                         <div class="flex items-center gap-1">
-                            <input type="checkbox" name="stops" value="two" id="stop-2">
-                            <label for="stop-2">2-stop</label>
+                            <input type="checkbox" name="stops" value="two-stops" id="stop-2">
+                            <label for="stop-2">two-stops</label>
                         </div>
 
 
@@ -114,14 +95,14 @@
                             <label>
                                 <input type="radio" name="timedep" class="sr-only peer" value="morning">
                                 <span
-                                    class="p-1 rounded-lg outline outline-gray-200  peer-checked:bg-[var(--navy-blue)] peer-checked:text-white cursor-pointer">
+                                    class="p-1 rounded-lg outline outline-gray-200  peer-checked:bg-[var(--navy-blue)] peer-checked:text-white cursor-pointer text-sm">
                                     Morning
                                 </span>
                             </label>
                             <label>
-                                <input type="radio" name="timedep" class="sr-only peer" value="morning">
+                                <input type="radio" name="timedep" class="sr-only peer" value="afternoon">
                                 <span
-                                    class="p-1 rounded-lg outline outline-gray-200  peer-checked:bg-[var(--navy-blue)] peer-checked:text-white cursor-pointer">
+                                    class="p-1 rounded-lg outline outline-gray-200  peer-checked:bg-[var(--navy-blue)] peer-checked:text-white cursor-pointer text-sm">
                                     Afternoon
                                 </span>
                             </label>
@@ -129,10 +110,10 @@
                         <div class="mt-2">
 
                             <label>
-                                <input type="radio" name="timedep" class="sr-only peer" value="morning">
+                                <input type="radio" name="timedep" class="sr-only peer" value="evening">
                                 <span
-                                    class="p-1 rounded-lg outline outline-gray-200 peer-checked:bg-[var(--navy-blue)] peer-checked:text-white cursor-pointer">
-                                    Evenning
+                                    class="p-1 rounded-lg outline outline-gray-200 peer-checked:bg-[var(--navy-blue)] peer-checked:text-white cursor-pointer text-sm">
+                                    Evening
                                 </span>
                             </label>
 
@@ -147,14 +128,30 @@
                 </form>
 
             </aside>
-            <div class="content flex-5 flex flex-col gap-3 scroll h-[80vh] overflow-y-auto">
+
+            <div class="flex-5 flex flex-col gap-2">
+                <div class=" flex justify-end">
+                    <div class="flex gap-2 items-center">
+                        <form>
+                            <label for="sort">Sort By :</label>
+                            <select name="sort" id="sort"
+                                class=" sort appearance-none p-1 border border-gray-200 focus:outline-2 focus:outline-[var(--navy-blue)] focus:text-[var(--navy-blue)] rounded-lg">
+                                <option value="Earliest">Earliest</option>
+                                <option value="Cheapest">Cheapest</option>
+                                <option value="Most Expensive">Most Expensive</option>
+                                <option value="original">Original Order</option>
+                            </select>
+                        </form>
+                    </div>
+
+                </div>
+                <div class="content  flex flex-col gap-3 scroll h-[70vh] overflow-y-auto w-full">
+
+                </div>
 
             </div>
 
 
-            <div>
-                <img src="./assets/logos/turkishairlines-com-logo.png" alt="" class="siz-8 rounded-circle">
-            </div>
         </div>
 
     </main>

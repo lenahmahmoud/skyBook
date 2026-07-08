@@ -22,7 +22,7 @@
                     <h1 class="text-6xl ">Your Journey Starts Here</h1>
                     <p class="text-xl ">Find the best flights, unforgettable experieces and amazing destination</p>
                 </div>
-                <form class="bg-white/60 rounded-lg text-[#525F75] p-5 container mx-auto shadow-lg/20   " role="search">
+                <form class="bg-white/60 rounded-lg text-[#525F75] p-5 container mx-auto shadow-lg/20  search " role="search">
                     <nav class=" rounded-lg pb-5">
                         <ul class="flex gap-10">
                             <li><button class="round-trip" type="button">
@@ -32,6 +32,7 @@
                                     One Way </button></a></li>
                         </ul>
                     </nav>
+
                     <div class="input-group flex gap-25 justify-between bg-white p-5 ">
                         <div class="flex flex-col gap-2 flex-1">
                             <label for="from">from</label>
@@ -40,7 +41,7 @@
                                     style="color: #2063A6;"></i>
                                 <input type="text" id="from"
                                     class="border p-2 focus:outline-2 outline-[var(--navy-blue)] rounded-lg border-[var(--dusty)] w-full"
-                                    placeholder="Holland">
+                                    placeholder="Amsterdam" name="fromCity">
                             </div>
 
                         </div>
@@ -52,7 +53,7 @@
                                     style="color:var(--navy-blue);"></i>
                                 <input type="text" id="from"
                                     class="border p-2 rounded-lg border-[var(--dusty)] w-full focus:outline-2 outline-[var(--navy-blue)] "
-                                    placeholder="Barcelona">
+                                    placeholder="Barcelona" name="toCity">
                             </div>
 
                         </div>
@@ -61,7 +62,7 @@
                             <label for="departure">departure</label>
                             <div class="relative">
                                 <input type="date" id="return"
-                                    class="border p-2 rounded-lg border-[#F2F2F2] focus:outline-2 outline-[#2063A6] w-full ">
+                                    class="border p-2 rounded-lg border-[#F2F2F2] focus:outline-2 outline-[#2063A6] w-full " name="depDate">
                                 <i class="fa-solid fa-calendar absolute top-3 right-2 text-[var(--navy-blue)]"></i>
 
                             </div>
@@ -69,7 +70,7 @@
                         <div class="flex flex-col gap-2 return flex-1">
                             <label for="return">return</label>
                             <div class="relative">
-                                <input type="date" id="return"
+                                <input type="date" id="return" name="returnDate"
                                     class="border p-2 rounded-lg border-[#F2F2F2] focus:outline-2 outline-[#2063A6] w-full ">
                                 <i class="fa-solid fa-calendar absolute top-3 right-2 text-[#2063A6]"></i>
 
@@ -79,7 +80,7 @@
                         <div class="flex flex-col gap-2 flex-1">
                             <label for="passengers">Passengers</label>
 
-                            <select id="passengers"
+                            <select id="passengers" name="passengers"
                                 class="border border-[#E9E9E9] rounded-lg p-2 focus:outline-2 outline-[var(--navy-blue)] appearance-none ">
                                 <option value="1" class="text-red-900">1 Passenger</option>
                                 <option value="2">2 Passengers</option>
@@ -92,10 +93,9 @@
                         <div class="flex flex-col gap-2 flex-1 ">
                             <label for="cabin-class">Cabin Class</label>
 
-                            <select id="cabin-class"
+                            <select id="cabin-class" name="cabin"
                                 class="border border-[#E9E9E9] appearance-none rounded-lg p-2 focus:outline-2 outline-[var(--navy-blue)] ">
                                 <option value="economy">Economy</option>
-                                <option value="premium-economy">Premium Economy</option>
                                 <option value="business">Business</option>
                                 <option value="first">First Class</option>
                             </select>
@@ -104,7 +104,7 @@
                     </div>
 
                     <div class="search-btn bg-white py-3">
-                        <button aria-label="search" class="w-full bg-[var(--navy-blue)] py-3 text-white">Search</button>
+                        <button aria-label="search" class="w-full bg-[var(--navy-blue)] py-3 text-white cursor-pointer" type="submit">Search</button>
                     </div>
 
                 </form>

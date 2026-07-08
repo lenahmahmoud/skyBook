@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>skyBook</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./src/output.css">
+    <link rel="shortcut icon" href="./assets/icons/plane-departure-solid-full.svg" type="image/x-icon">
+</head>
+
+<body>
+
+    <div class="relative">
+        <header class=" bg-[url(/assets/images/v.png)] h-[55vh] bg-no-repeat bg-cover  bg-center ">
+            <div class="nav p-3 text-white container mx-auto"></div>
+        </header>
+        <main class="container mx-auto font-bold ">
+            <div
+                class=" rounded-lg shadow-lg/10  flex flex-col gap-2  absolute top-[80%] container bg-[#F8F9FD] z-[1000]">
+                <div class="basic-info flex flex-cenetr justify-between p-5">
+                    <div>
+                        <p class="airline mb-2 text-2xl"></p>
+                        <p class="airports text-gray-700 flex gap-5 text-center">
+                            <span class="airportdep"></span>
+                            <span class="iconplane">
+                                <i class="fa-solid fa-plane text-[var(--navy-blue)]" "></i>
+                            </span>
+                            <span class=" airportarr"></span>
+                        </p>
+                    </div>
+                    <div>
+                        <p class="duration"></p>
+
+                    </div>
+
+                </div>
+                <div class="bg-white p-5 shadow-sm/2 flex justify-between items-center">
+                    <div class="flex flex-col justify-center items-center">
+                        <p class="departureClock text-4xl"></p>
+                        <p class="dep"></p>
+                        <p class="depDate text-gray-700"></p>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fa-solid fa-circle text-[var(--navy-blue)] text-[8px] leading-none"></i>
+                        <div class="line h-[2px] w-[350px] bg-[var(--navy-blue)]"></div>
+                        <i class="fa-solid fa-circle text-[var(--navy-blue)] text-[8px] leading-none"></i>
+                    </div>
+                    <div class="flex flex-col justify-center items-center">
+                        <p class="arrivalClock text-4xl"></p>
+                        <p class="arriv"></p>
+                        <p class="arrivDate text-gray-700"></p>
+                    </div>
+                </div>
+
+                <div class="aircraft-info p-5 text-lg">
+                    <h3 class=" text-xl mb-7  ">Aircraft Information</h3>
+
+                    <div class="flex justify-between w-full text-lg">
+                        <div class="flex flex-col items-center gap-3 text-center">
+                            <i class="fa-solid fa-plane text-[var(--navy-blue)] text-lg"></i>
+                            <p class="aircraft-model"></p>
+                        </div>
+
+                        <div class="flex items-center gap-3 flex-col  text-center">
+                            <i class="fa-solid fa-gauge-high text-[var(--navy-blue)] text-lg"></i>
+                            <p><span class="aircraft-speed"></span> km/h</p>
+                        </div>
+
+                        <div class="flex items-center gap-3 flex-col  text-center">
+                            <i class="fa-solid fa-chair text-[var(--navy-blue)] text-lg"></i>
+                            <p><span class="aircraft-seats-available"></span> seats available</p>
+                        </div>
+                        <div class="flex items-center gap-3 flex-col text-cente">
+                            <i class="fa-solid fa-wifi text-[var(--navy-blue)]"></i>
+                            <p class="amenity-wifi"></p>
+                        </div>
+
+                        <div class="flex items-center gap-3 flex-col text-center">
+                            <i class="fa-solid fa-utensils text-[var(--navy-blue)]"></i>
+                            <p class="amenity-meal"></p>
+                        </div>
+
+                        <div class="flex items-center gap-3 flex-col text-center">
+                            <i class="fa-solid fa-tv text-[var(--navy-blue)]"></i>
+                            <p class="amenity-entertainment"></p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="bg-white shadow-sm/2 p-5">
+                    <h2 class="text-xl">Choose Your Cabin</h2>
+                    <div class="seats">
+                        
+
+                    </div>
+
+
+
+                </div>
+
+        </main>
+
+    </div>
+
+    <script src="../js/navbar.js"></script>
+    <script type="module" src="../js/view.js"></script>
+</body>
+
+</html>

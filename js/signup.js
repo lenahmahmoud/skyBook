@@ -53,7 +53,6 @@ function togglePasswordType() {
 
 async function handleSubmit(e) {
   e.preventDefault();
-  console.log("prevented");
   const data = new FormData(form);
   const firstName = data.get("firstname");
   const lastName = data.get("lastname");
