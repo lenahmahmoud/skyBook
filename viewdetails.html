@@ -15,23 +15,31 @@
 <body>
 
     <div class="relative">
-        <header class=" bg-[url(/assets/images/v.png)] h-[55vh] bg-no-repeat bg-cover  bg-center ">
-            <div class="nav p-3 text-white container mx-auto"></div>
+        <header class=" bg-[url(/assets/images/v.png)] h-[60vh] bg-no-repeat bg-center bg-top   bg-fixed ">
+            <div class="nav p-3 text-white container mx-auto "></div>
         </header>
-        <main class="container mx-auto font-bold ">
+        <main class="w-[80%] mx-auto font-bold ">
             <div
-                class=" rounded-lg shadow-lg/10  flex flex-col gap-2  absolute top-[80%] container bg-[#F8F9FD] z-[1000]">
-                <div class="basic-info flex flex-cenetr justify-between p-5">
-                    <div>
-                        <p class="airline mb-2 text-2xl"></p>
-                        <p class="airports text-gray-700 flex gap-5 text-center">
-                            <span class="airportdep"></span>
-                            <span class="iconplane">
-                                <i class="fa-solid fa-plane text-[var(--navy-blue)]" "></i>
+                class=" rounded-lg shadow-lg/10  flex flex-col gap-5  absolute top-[80%] w-[80%] bg-[#F8F9FD] z-[1000]">
+                <div class="basic-info flex  justify-between p-5">
+                    <div class="flex items-center gap-3 ">
+                        <div class="airline-logo">
+                        </div>
+
+                        <div>
+                            <p class="airline mb-2 text-2xl"></p>
+                            <p class="airports text-gray-700 flex gap-5 text-center">
+                                <span class="airportdep"></span>
+                                <span class="iconplane">
+                                    <i class="fa-solid fa-plane text-[var(--navy-blue)]" "></i>
                             </span>
                             <span class=" airportarr"></span>
-                        </p>
+                            </p>
+                            <p class="flight-number text-gray-700"></p>
+                        </div>
+
                     </div>
+
                     <div>
                         <p class="duration"></p>
 
@@ -93,13 +101,49 @@
                 </div>
                 <div class="bg-white shadow-sm/2 p-5">
                     <h2 class="text-xl">Choose Your Cabin</h2>
-                    <div class="seats">
-                        
+                    <div class="seats flex justify-between mt-5 ">
+
+                        <div
+                            class="bg-[url(/assets/images/economy.png)] h-[40vh] w-[30%] bg-no-repeat bg-cover p-3 rounded-lg">
+                            <h3 class="text-xl">Economy</h3>
+                            <div>
+                                <span class="text-gray-600">From</span>
+                                <span class="economy-price text-[var(--navy-blue)]"> </span>
+
+                            </div>
+                        </div>
+                        <div
+                            class="bg-[url(/assets/images/business.png)] h-[40vh] w-[30%] bg-no-repeat bg-cover p-3 rounded-lg">
+                            <h3 class="text-xl">Business</h3>
+                            <div>
+                                <span class="text-gray-600">From</span>
+                                <span class="Business-price text-[var(--navy-blue)]"> </span>
+
+                            </div>
+
+                        </div>
+                        <div
+                            class="bg-[url(/assets/images/first-class.png)] h-[40vh] w-[30%] bg-no-repeat bg-cover p-3 rounded-lg">
+                            <h3 class="text-xl">First Class</h3>
+                            <div>
+                                <span class="text-gray-600">From</span>
+
+                                <span class="first-class text-[var(--navy-blue)]"> </span>
+                            </div>
+
+
+                        </div>
+
 
                     </div>
 
 
 
+                </div>
+
+                <div>
+                    <button class="choose-seat w-full bg-[var(--navy-blue)] p-2 text-white border-0 cursor-pointer">Choose Your
+                        Seat</button>
                 </div>
 
         </main>
