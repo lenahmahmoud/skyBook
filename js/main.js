@@ -186,8 +186,21 @@ function handleSearchedCities(e) {
   localStorage.setItem("cabinClass", cabinClass);
   window.location.href = "./explore.html";
 }
+function animationWelcome() {
+  const h1 = document.getElementsByClassName("welcome")[0];
+  const text = "Your Journey Starts Here";
+  text.split("").forEach((letter, index) => {
+    const span = document.createElement("span");
+    span.innerHTML = letter === " " ? "&nbsp;" : letter;
+    span.className =
+      " opacity-0 translate-y-4 animate-[fadeIn_.4s_ease_forwards]";
+    span.style.animationDelay = `${index * 50}ms`;
 
+    h1.appendChild(span);
+  });
+}
 createDestinationsection();
 toggleOneWay();
 const form = document.forms[0];
 form.addEventListener("submit", handleSearchedCities);
+animationWelcome()
