@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>skyBook</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./src/output.css">
+    <link rel="shortcut icon" href="./assets/icons/plane-departure-solid-full.svg" type="image/x-icon">
+</head>
+
+<body>
+    <header class="bg-[var(--navy-blue)] fixed w-full z-[1000] top-0">
+        <div class="container mx-auto p-5 text-white ">
+            <div class="nav"></div>
+
+        </div>
+    </header>
+    <main class="h-[100vh] w-full flex justify-center items-center">
+        <form class="form-payment p-5 w-[35%] border-1 border-[var(--dusty)] font-bold ">
+            <h2 class="text-xl">Payment Information</h2>
+
+            <div class="mt-5 ">
+                <div class="flex-col flex gap-2">
+                    <label for="cardName" >Name on Card</label>
+                    <input type="text" name="cardName" id="cardName" placeholder="enter the name on your card"
+                        class="p-1 outline outline-gray-400 focus:outline-gray-400 placeholder:text-gray-600  rounded-lg">
+                </div>
+            </div>
+
+            <div class="mt-5 ">
+                <div class="flex-col flex gap-2">
+                    <label for="cardNumber" >Card Number</label>
+                    <input type="text" name="cardNumber" id="cardNumber" placeholder="1234 5678 9012 3456"
+                        maxlength="19"
+                        class="p-1 outline outline-gray-400 focus:outline-black placeholder:text-gray-600 rounded-lg ">
+                </div>
+            </div>
+
+            <div class="mt-5  flex gap-3">
+                <div class="flex-col flex gap-2 flex-1">
+                    <label for="expiryDate" >Expiry Date</label>
+                    <input type="text" name="expiryDate" id="expiryDate" placeholder="MM/YY" maxlength="5"
+                        class="p-1 outline w-full outline-gray-400 focus:outline-black placeholder:text-gray-600  rounded-lg">
+                </div>
+
+                <div class="flex-col flex gap-2 flex-1">
+                    <label for="cvv" >CVV</label>
+                    <input type="text" name="cvv" id="cvv" placeholder="123" 
+                        class="p-1 outline w-full outline-gray-400 focus:outline-black placeholder:text-gray-600  rounded-lg">
+                </div>
+            </div>
+
+            <div class="mt-5 ">
+                <div class="flex-col flex gap-2">
+                    <label for="billingAddress" >Billing Address</label>
+                    <input type="text" name="billingAddress" id="billingAddress"
+                        placeholder="enter your billing address"
+                        class="p-1 outline outline-gray-400 focus:outline-black placeholder:text-gray-600  rounded-lg">
+                </div>
+            </div>
+            <div class="mt-5 flex justify-between items-center">
+                <span>Total:</span>
+                <span class="total font-bold text-2xl"></span>
+
+            </div>
+            <div class="mt-5 ">
+                <button type="button" class="pay text-center bg-[var(--navy-blue)] text-white w-full py-1 rounded-lg cursor-pointer ">Pay Now</button>
+            </div>
+        </form>
+    </main>
+    <script type="module" src="./js/payment.js"></script>
+    <script src="./js/navbar.js"></script>
+
+</body>
+
+</html>

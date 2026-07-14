@@ -1,4 +1,4 @@
-const url = "http://localhost:3000/flights";
+const url = "http://localhost:4000/flights";
 
 export async function getFlights() {
   try {

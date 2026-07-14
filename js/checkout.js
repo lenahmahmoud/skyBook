@@ -1,9 +1,10 @@
 import { getOneFlight } from "./flights.js";
 const params = new URLSearchParams(window.location.search);
 const flightId = params.get("id");
+const bookings = JSON.parse(localStorage.getItem("summaryBookings"));
 
 function calculateTotal(booking) {
-  let total = booking.ticket;
+  let total =Number( booking.ticket.split("").slice(1).join(""));
 
   if (booking.bag != " ") {
     total += Number(booking.bag);
@@ -14,10 +15,126 @@ function calculateTotal(booking) {
   }
 
   if (booking.insurance !== " ") {
-    total += Number(booking.insurance);
+    total += Number(booking.insurance
+      
+    );
   }
 
   return total;
+}
+function createSpan(text, parent) {
+  const span = document.createElement("span");
+  const textnode = document.createTextNode(text);
+  span.appendChild(textnode);
+  span.classList.add("text-red-500", "w-full");
+  parent.after(span);
+}
+
+function validate(forms) {
+  Array.from(forms).forEach((form, index) => {
+    const email = form.elements[`email[${index}]`];
+    email.addEventListener("change", () => {
+      const regex = /^[\w.-]+@[\w.-]+\.(com|org)$/;
+
+      if (email.nextElementSibling) {
+        email.nextElementSibling.remove();
+      }
+
+      if (!regex.test(email.value)) {
+        createSpan("invalid email address", email);
+      }
+    });
+
+    const phone = form.elements[`phone[${index}]`];
+    phone.addEventListener("change", () => {
+      const regex = /^[0-9]{11}$/;
+
+      if (phone.nextElementSibling) {
+        phone.nextElementSibling.remove();
+      }
+
+      if (!regex.test(phone.value)) {
+        createSpan("invalid phone number", phone);
+      }
+    });
+  });
+}
+
+// function checkMissingFields(form, index) {
+//   const title = form.elements[`title[${index}]`];
+//   const firstname = form.elements[`firstname[${index}]`];
+//   const lastname = form.elements[`lastname[${index}]`];
+//   const email = form.elements[`email[${index}]`];
+//   const phone = form.elements[`phone[${index}]`];
+//   const birthdate = form.elements[`birthdate[${index}]`];
+//   const nationality = form.elements[`nationality[${index}]`];
+//   const passport = form.elements[`passport[${index}]`];
+//   const expiry = form.elements[`Expiry[${index}]`];
+
+//   function checkRequired(input) {
+//     if (input.nextElementSibling?.innerText === "*required") {
+//       input.nextElementSibling.remove();
+//     }
+//     if (input.value === "") {
+//       createSpan("*required", input);
+//       return false;
+//     }
+//     return true;
+//   }
+
+//   title.addEventListener("change", () => checkRequired(title));
+//   firstname.addEventListener("change", () => checkRequired(firstname));
+//   lastname.addEventListener("change", () => checkRequired(lastname));
+//   email.addEventListener("change", () => checkRequired(email));
+//   phone.addEventListener("change", () => checkRequired(phone));
+//   birthdate.addEventListener("change", () => checkRequired(birthdate));
+//   nationality.addEventListener("change", () => checkRequired(nationality));
+//   passport.addEventListener("change", () => checkRequired(passport));
+//   expiry.addEventListener("change", () => checkRequired(expiry));
+
+//   const results = [
+//     checkRequired(title),
+//     checkRequired(firstname),
+//     checkRequired(lastname),
+//     checkRequired(email),
+//     checkRequired(phone),
+//     checkRequired(birthdate),
+//     checkRequired(nationality),
+//     checkRequired(passport),
+//     checkRequired(expiry),
+//   ];
+
+//   return results.every(Boolean);
+// }
+function handleClick(forms) {
+  let allValid = true;
+  const allData = Array.from(forms).map((form, index) => {
+    const formData = new FormData(form);
+    // const ok = checkMissingFields(form, index);
+    // if (!ok) {
+    //   allValid = false;
+    // }
+    return Object.fromEntries(formData.entries());
+  });
+
+  if (!allValid) {
+    return;
+  } else {
+    const seats = bookings.map((b) => {
+      return b.seat;
+    });
+    const total = bookings.map((t) => {
+      return calculateTotal(t);
+    });
+    const data = {
+      flightId: flightId,
+      seats: seats,
+      total: total,
+      passengers: allData,
+    };
+    localStorage.setItem("confirm-booking", JSON.stringify(data));
+    return true;
+  }
 }
 
 async function createContent() {
@@ -35,7 +152,6 @@ async function createContent() {
 
   const flight = await getOneFlight(flightId);
   const wrap = document.querySelector(".wrap");
-  const bookings = JSON.parse(localStorage.getItem("summaryBookings"));
   bookings.forEach((booking, index) => {
     const content = document.createElement("div");
     content.classList.add(
@@ -43,7 +159,7 @@ async function createContent() {
     );
     const passenger = document.createElement("div");
     passenger.classList.add(...["flex", "passenger", "flex-2"]);
-    passenger.innerHTML = `<form class="form-passenger[${index}] w-full ">
+    passenger.innerHTML = `<form class="form-passenger w-full ">
                         <h2 class="text-xl">Passenger ${passengerNames[index]}  Information</h2>
                         <div class="flex  mt-5 gap-4 w-[80%]">
                             <div class="flex-col flex gap-2 flex-1 ">
@@ -251,7 +367,7 @@ async function createContent() {
         </div>
         <div class="flex justify-between mb-3 border-b border-gray-500">
             <h3>Travel Insurance</h3>
-            <span>$ ${booking.insurance === " " ? "$---" : booking.insurance}</span>
+            <span>$ ${booking.insurance === " " ? "---" : booking.insurance}</span>
         </div>
 
        
@@ -261,7 +377,7 @@ async function createContent() {
     
  <div class="flex justify-between mt-10 ">
             <h3>Total Price </h3>
-            <span class="text-xl"> ${calculateTotal(booking)}</span>
+            <span class="text-xl">$ ${calculateTotal(booking)}</span>
         </div>
        
                 
@@ -277,7 +393,16 @@ async function createContent() {
     "cursor-pointer",
   );
 
-  confirm.innerText = "Pay Now";
+  const forms = document.getElementsByClassName("form-passenger");
+  validate(forms);
+  confirm.innerText = "Confirm";
+  confirm.type = "button";
   wrap.appendChild(confirm);
+  confirm.addEventListener("click", () => {
+    handleClick(forms);
+    if (handleClick(forms)) {
+      location.href = "./payment.html";
+    }
+  });
 }
 await createContent();
