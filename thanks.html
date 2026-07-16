@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>skyBook</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./src/output.css">
+    <link rel="shortcut icon" href="./assets/icons/plane-departure-solid-full.svg" type="image/x-icon">
+</head>
+
+<body class="overflow-hidden">
+    <main class=" bg-[url('../assets/images/thanku.png')] bg-cover bg-top h-[100vh] relative">
+        <div class="h-[50%] w-[30%] bg-white rounded-lg absolute top-[30%] left-[35%] relative p-3 ">
+            <div
+                class=" absolute z-[1000] bg-white bottom-[88%] shadow-lg/40 text-shadow-sky-300 size-30 rounded-full left-[38%] flex items-center justify-center ">
+                <svg class="size-18 text-green-400" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2">
+                    <path d="M4 12L9 17L20 6"
+                        class="[stroke-dasharray:30] [stroke-dashoffset:30] animate-[draw_1s_ease-out_1_forwards]" />
+                </svg>
+
+
+            </div>
+            <h1 class="text-3xl font-bold text-center mt-10">Booking Confirmed! </h1>
+            <p class="text-center text-gray-500 mt-2 font-bold"> your booking has successfully Confirmed</p>
+            <div class="flex justify-center mt-5 font-bold ">
+                <h2 class="text-lg">Booking Receipt </h2>
+            </div>
+            <p class="receipt font-bold text-3xl text-center mt-2"></p>
+
+            <div class="mt-10 text-center">
+                <button type="button" class="w-3/4 rounded-lg py-1 text-white bg-[var(--navy-blue)] cursor-pointer"
+                    id="download">Download
+                    Ticket</button>
+                <button id="home" type="button "
+                    class="w-3/4 rounded-lg py-1 outline outline-gray-400 text-[var(--navy-blue)] mt-3 cursor-pointer">Go
+                    To
+                    Home</button>
+            </div>
+
+
+        </div>
+
+    </main>
+    <div id="receipt-wrapper">
+
+        <div class="receipt-page"></div>
+
+        <div class="passenger-info"></div>
+
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script type="module" src="../js/thanks.js"></script>
+</body>
+
+</html>

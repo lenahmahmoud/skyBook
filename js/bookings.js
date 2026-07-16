@@ -1,4 +1,4 @@
-const url = "http://localhost:4000/bookings";
+const url = "http://localhost:3000/bookings";
 
 export async function addBooking(object) {
   try {

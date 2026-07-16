@@ -1,4 +1,6 @@
 import { addBooking } from "./bookings.js";
+import { editFlight, getOneFlight } from "./flights.js";
+
 function cardNumber() {
   const cardInput = document.querySelector("#cardNumber");
 
@@ -44,8 +46,17 @@ function total() {
   });
   document.querySelector(".total").innerText = `$${tickets}`;
 }
-function generateREceipt() {
-  const time =  Date.now();
+function generatePNR() {
+  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  let code = "";
+  for (let i = 0; i < 6; i++) {
+    code += chars[Math.floor(Math.random() * chars.length)];
+  }
+
+  return code;
+}
+function transactioniID() {
+  const time = Date.now();
   const randomValue = Math.floor(Math.random() * 100000);
   return `SKY-${time}-${randomValue}`;
 }
@@ -69,15 +80,35 @@ function handlePay(form) {
         cvv: cvv,
         billingAdd: billingAdd,
       },
-      receipt: generateREceipt(),
-      userid: localStorage.getItem("user-id")? localStorage.getItem("user-id"):""
+      transactionID: transactioniID(),
+      PNR: generatePNR(),
+      userid: localStorage.getItem("user-id")
+        ? localStorage.getItem("user-id")
+        : "",
     }),
   );
   console.log(JSON.parse(localStorage.getItem("confirm-booking")));
 }
-function updateSeats(){
-    
+async function updateSeats() {
+  const flight = await getOneFlight(
+    JSON.parse(localStorage.getItem("confirm-booking")).flightId,
+  );
+  const seats = JSON.parse(localStorage.getItem("confirm-booking")).seats;
+
+  seats.forEach((seat) => {
+    flight.seats.forEach((seatFlight) => {
+      if (seatFlight.seat === seat) {
+        seatFlight.available = false;
+        flight.seatsAvailable -= 1;
+      }
+    });
+  });
+
+  await editFlight(flight, flight.id);
+
+  location.href = "./thanks.html";
 }
+
 cardNumber();
 expiryDate();
 cvv();
@@ -86,5 +117,5 @@ const form = document.querySelector("form");
 document.querySelector(".pay").addEventListener("click", async () => {
   handlePay(form);
   await addBooking(JSON.parse(localStorage.getItem("confirm-booking")));
-
+  await updateSeats();
 });

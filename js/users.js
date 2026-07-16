@@ -1,4 +1,4 @@
-const url = "http://localhost:4000/users";
+const url = "http://localhost:3000/users";
 export async function addUser(user) {
   try {
     const res = await fetch(url, {

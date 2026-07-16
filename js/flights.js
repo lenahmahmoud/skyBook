@@ -1,4 +1,4 @@
-const url = "http://localhost:4000/flights";
+const url = "http://localhost:3000/flights";
 
 export async function getFlights() {
   try {
@@ -6,7 +6,7 @@ export async function getFlights() {
     if (!res.ok) {
       throw new Error(`error ${res.status}`);
     }
-    const data =await  res.json();
+    const data = await res.json();
     return data;
   } catch (err) {
     console.error(err);
@@ -21,6 +21,25 @@ export async function getOneFlight(id) {
     }
     const data = await res.json();
     return data[0];
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+}
+export async function editFlight(flight, id) {
+  try {
+    const res = await fetch(`${url}/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(flight),
+    });
+    if (!res.ok) {
+      throw new Error(`error ${res.status}`);
+    }
+    const data = await res.json();
+    return data;
   } catch (err) {
     console.error(err);
     throw err;

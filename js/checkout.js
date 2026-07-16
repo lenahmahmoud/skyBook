@@ -2,9 +2,9 @@ import { getOneFlight } from "./flights.js";
 const params = new URLSearchParams(window.location.search);
 const flightId = params.get("id");
 const bookings = JSON.parse(localStorage.getItem("summaryBookings"));
-
+const { isValidPhoneNumber, parsePhoneNumber } = window.libphonenumber;
 function calculateTotal(booking) {
-  let total =Number( booking.ticket.split("").slice(1).join(""));
+  let total = Number(booking.ticket.split("").slice(1).join(""));
 
   if (booking.bag != " ") {
     total += Number(booking.bag);
@@ -15,9 +15,7 @@ function calculateTotal(booking) {
   }
 
   if (booking.insurance !== " ") {
-    total += Number(booking.insurance
-      
-    );
+    total += Number(booking.insurance);
   }
 
   return total;
@@ -29,8 +27,61 @@ function createSpan(text, parent) {
   span.classList.add("text-red-500", "w-full");
   parent.after(span);
 }
-
 function validate(forms) {
+  const dialCodeTextMap = {
+    "🇪🇬 Egypt +20": "EG",
+    "🇬🇧 UK +44": "GB",
+    "🇺🇸 USA +1": "US",
+    "🇨🇦 Canada +1": "CA",
+    "🇫🇷 France +33": "FR",
+    "🇩🇪 Germany +49": "DE",
+    "🇮🇹 Italy +39": "IT",
+    "🇪🇸 Spain +34": "ES",
+    "🇵🇹 Portugal +351": "PT",
+    "🇳🇱 Netherlands +31": "NL",
+    "🇧🇪 Belgium +32": "BE",
+    "🇨🇭 Switzerland +41": "CH",
+    "🇦🇹 Austria +43": "AT",
+    "🇸🇪 Sweden +46": "SE",
+    "🇳🇴 Norway +47": "NO",
+    "🇩🇰 Denmark +45": "DK",
+    "🇫🇮 Finland +358": "FI",
+    "🇮🇪 Ireland +353": "IE",
+    "🇵🇱 Poland +48": "PL",
+    "🇬🇷 Greece +30": "GR",
+    "🇹🇷 Turkey +90": "TR",
+    "🇷🇺 Russia +7": "RU",
+    "🇺🇦 Ukraine +380": "UA",
+    "🇸🇦 Saudi Arabia +966": "SA",
+    "🇦🇪 UAE +971": "AE",
+    "🇶🇦 Qatar +974": "QA",
+    "🇰🇼 Kuwait +965": "KW",
+    "🇧🇭 Bahrain +973": "BH",
+    "🇴🇲 Oman +968": "OM",
+    "🇯🇴 Jordan +962": "JO",
+    "🇱🇧 Lebanon +961": "LB",
+    "🇸🇾 Syria +963": "SY",
+    "🇮🇶 Iraq +964": "IQ",
+    "🇲🇦 Morocco +212": "MA",
+    "🇩🇿 Algeria +213": "DZ",
+    "🇹🇳 Tunisia +216": "TN",
+    "🇱🇾 Libya +218": "LY",
+    "🇸🇩 Sudan +249": "SD",
+    "🇮🇳 India +91": "IN",
+    "🇵🇰 Pakistan +92": "PK",
+    "🇧🇩 Bangladesh +880": "BD",
+    "🇨🇳 China +86": "CN",
+    "🇯🇵 Japan +81": "JP",
+    "🇰🇷 South Korea +82": "KR",
+    "🇵🇭 Philippines +63": "PH",
+    "🇮🇩 Indonesia +62": "ID",
+    "🇲🇾 Malaysia +60": "MY",
+    "🇹🇭 Thailand +66": "TH",
+    "🇻🇳 Vietnam +84": "VN",
+    "🇦🇺 Australia +61": "AU",
+    "🇳🇿 New Zealand +64": "NZ",
+  };
+
   Array.from(forms).forEach((form, index) => {
     const email = form.elements[`email[${index}]`];
     email.addEventListener("change", () => {
@@ -45,75 +96,78 @@ function validate(forms) {
       }
     });
 
+    const dialCode = form.elements[`dialCode[${index}]`];
     const phone = form.elements[`phone[${index}]`];
-    phone.addEventListener("change", () => {
-      const regex = /^[0-9]{11}$/;
 
+    phone.addEventListener("change", () => {
       if (phone.nextElementSibling) {
         phone.nextElementSibling.remove();
       }
 
-      if (!regex.test(phone.value)) {
+      const countryCode = dialCodeTextMap[dialCode.value]; 
+      const isValid = isValidPhoneNumber(phone.value, countryCode);
+
+      if (!isValid) {
         createSpan("invalid phone number", phone);
       }
     });
   });
 }
 
-// function checkMissingFields(form, index) {
-//   const title = form.elements[`title[${index}]`];
-//   const firstname = form.elements[`firstname[${index}]`];
-//   const lastname = form.elements[`lastname[${index}]`];
-//   const email = form.elements[`email[${index}]`];
-//   const phone = form.elements[`phone[${index}]`];
-//   const birthdate = form.elements[`birthdate[${index}]`];
-//   const nationality = form.elements[`nationality[${index}]`];
-//   const passport = form.elements[`passport[${index}]`];
-//   const expiry = form.elements[`Expiry[${index}]`];
+function checkMissingFields(form, index) {
+  const title = form.elements[`title[${index}]`];
+  const firstname = form.elements[`firstname[${index}]`];
+  const lastname = form.elements[`lastname[${index}]`];
+  const email = form.elements[`email[${index}]`];
+  const phone = form.elements[`phone[${index}]`];
+  const birthdate = form.elements[`birthdate[${index}]`];
+  const nationality = form.elements[`nationality[${index}]`];
+  const passport = form.elements[`passport[${index}]`];
+  const expiry = form.elements[`Expiry[${index}]`];
 
-//   function checkRequired(input) {
-//     if (input.nextElementSibling?.innerText === "*required") {
-//       input.nextElementSibling.remove();
-//     }
-//     if (input.value === "") {
-//       createSpan("*required", input);
-//       return false;
-//     }
-//     return true;
-//   }
+  function checkRequired(input) {
+    if (input.nextElementSibling?.innerText === "*required") {
+      input.nextElementSibling.remove();
+    }
+    if (input.value === "") {
+      createSpan("*required", input);
+      return false;
+    }
+    return true;
+  }
 
-//   title.addEventListener("change", () => checkRequired(title));
-//   firstname.addEventListener("change", () => checkRequired(firstname));
-//   lastname.addEventListener("change", () => checkRequired(lastname));
-//   email.addEventListener("change", () => checkRequired(email));
-//   phone.addEventListener("change", () => checkRequired(phone));
-//   birthdate.addEventListener("change", () => checkRequired(birthdate));
-//   nationality.addEventListener("change", () => checkRequired(nationality));
-//   passport.addEventListener("change", () => checkRequired(passport));
-//   expiry.addEventListener("change", () => checkRequired(expiry));
+  title.addEventListener("change", () => checkRequired(title));
+  firstname.addEventListener("change", () => checkRequired(firstname));
+  lastname.addEventListener("change", () => checkRequired(lastname));
+  email.addEventListener("change", () => checkRequired(email));
+  phone.addEventListener("change", () => checkRequired(phone));
+  birthdate.addEventListener("change", () => checkRequired(birthdate));
+  nationality.addEventListener("change", () => checkRequired(nationality));
+  passport.addEventListener("change", () => checkRequired(passport));
+  expiry.addEventListener("change", () => checkRequired(expiry));
 
-//   const results = [
-//     checkRequired(title),
-//     checkRequired(firstname),
-//     checkRequired(lastname),
-//     checkRequired(email),
-//     checkRequired(phone),
-//     checkRequired(birthdate),
-//     checkRequired(nationality),
-//     checkRequired(passport),
-//     checkRequired(expiry),
-//   ];
+  const results = [
+    checkRequired(title),
+    checkRequired(firstname),
+    checkRequired(lastname),
+    checkRequired(email),
+    checkRequired(phone),
+    checkRequired(birthdate),
+    checkRequired(nationality),
+    checkRequired(passport),
+    checkRequired(expiry),
+  ];
 
-//   return results.every(Boolean);
-// }
+  return results.every(Boolean);
+}
 function handleClick(forms) {
   let allValid = true;
   const allData = Array.from(forms).map((form, index) => {
     const formData = new FormData(form);
-    // const ok = checkMissingFields(form, index);
-    // if (!ok) {
-    //   allValid = false;
-    // }
+    const ok = checkMissingFields(form, index);
+    if (!ok) {
+      allValid = false;
+    }
     return Object.fromEntries(formData.entries());
   });
 
@@ -198,12 +252,78 @@ async function createContent() {
                             </div>
 
                         </div>
-                        <div class="mt-5 w-[80%]">
-                            <div class="flex-col flex gap-2 ">
+                        <div class="mt-5 w-[80%] flex gap-2 items-center">
+                        <div class="flex-col flex">
+                        <label for="dialCode[${index}]" class="text-gray-500">Dial Code</label>
+<div class="flex-1">
+  <input 
+    list="dialCodeList[${index}]" 
+    id="dialCode[${index}]" 
+    name="dialCode[${index}]" 
+    required 
+    placeholder="Search country code"
+    class="p-1 outline outline-gray-400 focus:outline-gray-400 rounded-lg w-ful placeholder:text-black"
+  />
+  <datalist id="dialCodeList[${index}]">
+    <option value="🇪🇬 Egypt +20">
+    <option value="🇬🇧 UK +44">
+    <option value="🇺🇸 USA +1">
+    <option value="🇨🇦 Canada +1">
+    <option value="🇫🇷 France +33">
+    <option value="🇩🇪 Germany +49">
+    <option value="🇮🇹 Italy +39">
+    <option value="🇪🇸 Spain +34">
+    <option value="🇵🇹 Portugal +351">
+    <option value="🇳🇱 Netherlands +31">
+    <option value="🇧🇪 Belgium +32">
+    <option value="🇨🇭 Switzerland +41">
+    <option value="🇦🇹 Austria +43">
+    <option value="🇸🇪 Sweden +46">
+    <option value="🇳🇴 Norway +47">
+    <option value="🇩🇰 Denmark +45">
+    <option value="🇫🇮 Finland +358">
+    <option value="🇮🇪 Ireland +353">
+    <option value="🇵🇱 Poland +48">
+    <option value="🇬🇷 Greece +30">
+    <option value="🇹🇷 Turkey +90">
+    <option value="🇷🇺 Russia +7">
+    <option value="🇺🇦 Ukraine +380">
+    <option value="🇸🇦 Saudi Arabia +966">
+    <option value="🇦🇪 UAE +971">
+    <option value="🇶🇦 Qatar +974">
+    <option value="🇰🇼 Kuwait +965">
+    <option value="🇧🇭 Bahrain +973">
+    <option value="🇴🇲 Oman +968">
+    <option value="🇯🇴 Jordan +962">
+    <option value="🇱🇧 Lebanon +961">
+    <option value="🇸🇾 Syria +963">
+    <option value="🇮🇶 Iraq +964">
+    <option value="🇲🇦 Morocco +212">
+    <option value="🇩🇿 Algeria +213">
+    <option value="🇹🇳 Tunisia +216">
+    <option value="🇱🇾 Libya +218">
+    <option value="🇸🇩 Sudan +249">
+    <option value="🇮🇳 India +91">
+    <option value="🇵🇰 Pakistan +92">
+    <option value="🇧🇩 Bangladesh +880">
+    <option value="🇨🇳 China +86">
+    <option value="🇯🇵 Japan +81">
+    <option value="🇰🇷 South Korea +82">
+    <option value="🇵🇭 Philippines +63">
+    <option value="🇮🇩 Indonesia +62">
+    <option value="🇲🇾 Malaysia +60">
+    <option value="🇹🇭 Thailand +66">
+    <option value="🇻🇳 Vietnam +84">
+    <option value="🇦🇺 Australia +61">
+    <option value="🇳🇿 New Zealand +64">
+  </datalist>
+</div>
+                        </div>
+                            <div class="flex-col flex flex-3">
                                 <label for="phone[${index}]" class="text-gray-500">Phone Number</label>
                                 <input type="text" name="phone[${index}]" id="phone[${index}]"
                                     placeholder="enter your phone"
-                                    class="p-1 outline  outline-gray-400 focus:outline-gray-400 placeholder:text-black rounded-lg ">
+                                    class="p-1 outline  outline-gray-400 focus:outline-gray-400 placeholder:text-black rounded-lg w-full">
 
                             </div>
 
